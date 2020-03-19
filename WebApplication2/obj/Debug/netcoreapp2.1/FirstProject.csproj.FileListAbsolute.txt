@@ -1,0 +1,14 @@
+C:\Users\User\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\bin\Debug\netcoreapp2.1\FirstProject.deps.json
+C:\Users\User\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\bin\Debug\netcoreapp2.1\FirstProject.runtimeconfig.json
+C:\Users\User\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\bin\Debug\netcoreapp2.1\FirstProject.runtimeconfig.dev.json
+C:\Users\User\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\bin\Debug\netcoreapp2.1\FirstProject.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\bin\Debug\netcoreapp2.1\FirstProject.pdb
+C:\Users\User\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\obj\Debug\netcoreapp2.1\FirstProject.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\obj\Debug\netcoreapp2.1\FirstProject.RazorAssemblyInfo.cache
+C:\Users\User\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\obj\Debug\netcoreapp2.1\FirstProject.RazorAssemblyInfo.cs
+C:\Users\User\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\obj\Debug\netcoreapp2.1\FirstProject.AssemblyInfoInputs.cache
+C:\Users\User\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\obj\Debug\netcoreapp2.1\FirstProject.AssemblyInfo.cs
+C:\Users\User\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\obj\Debug\netcoreapp2.1\FirstProject.RazorTargetAssemblyInfo.cache
+C:\Users\User\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\obj\Debug\netcoreapp2.1\FirstProject.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\obj\Debug\netcoreapp2.1\FirstProject.pdb
+C:\Users\User\Documents\Visual Studio 2017\Projects\WebApplication2\WebApplication2\obj\Debug\netcoreapp2.1\FirstProject.csprojAssemblyReference.cache
