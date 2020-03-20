@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using FirstProject.Data;
 using FirstProject.Domain;
 using AutoMapper;
 using FirstProject.Models.DTOs;
+using Microsoft.AspNet.Identity;
 
 namespace FirstProject.Controllers
 {
@@ -27,6 +29,7 @@ namespace FirstProject.Controllers
 
         // GET: api/Articles
         [HttpGet]
+		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         public IEnumerable<ArticleDTO> GetArticles()
         {
             var articles = _context.Articles.ToList();
