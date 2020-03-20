@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using FirstProject.Domain;
 using AutoMapper;
 using FirstProject.Models.DTOs;
+using Microsoft.AspNet.Identity;
 
 namespace FirstProject.Controllers
 {
@@ -28,7 +29,7 @@ namespace FirstProject.Controllers
 
 		// GET: api/FuelWises
 		[HttpGet]
-		[AllowAnonymous]
+		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
 		public IEnumerable<FuelWiseDTO> GetFuelWise()
 		{
 			var tips = _context.FuelWise.ToList();
