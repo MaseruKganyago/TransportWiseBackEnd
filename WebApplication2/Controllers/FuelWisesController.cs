@@ -13,33 +13,34 @@ using FirstProject.Models.DTOs;
 
 namespace FirstProject.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class FuelWisesController : ControllerBase
-    {
-        private readonly MyDBContext _context;
+	[Route("api/[controller]")]
+	[ApiController]
+	public class FuelWisesController : ControllerBase
+	{
+		private readonly MyDBContext _context;
 		private readonly IMapper _mapper;
 
-        public FuelWisesController(MyDBContext context, IMapper mapper)
-        {
-            _context = context;
+		public FuelWisesController(MyDBContext context, IMapper mapper)
+		{
+			_context = context;
 			_mapper = mapper;
-        }
+		}
 
-        // GET: api/FuelWises
-        [HttpGet]
-		[Authorize]
-        public IEnumerable<FuelWiseDTO> GetFuelWise()
-        {
-            var tips = _context.FuelWise.ToList();
+		// GET: api/FuelWises
+		[HttpGet]
+		[AllowAnonymous]
+		public IEnumerable<FuelWiseDTO> GetFuelWise()
+		{
+			var tips = _context.FuelWise.ToList();
 			var tipsDTO = _mapper.Map<List<FuelWiseDTO>>(tips);
 
 			return tipsDTO;
-        }
+		}
 
-        // GET: api/FuelWises/5
-        [HttpGet("{id}")]
+		// GET: api/FuelWises/5
+		[HttpGet("{id}")]
 		[Authorize]
+		[AllowAnonymous]
         public async Task<ActionResult<FuelWiseDTO>> GetFuelWise([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
