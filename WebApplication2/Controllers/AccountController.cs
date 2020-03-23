@@ -143,7 +143,9 @@ namespace SimpleNotes.Api.Controllers
 			// Get user key from password
 			applicationUser = await _userManager.FindByNameAsync(model.Email);
 			await _userManager.UpdateAsync(applicationUser);
-			return Ok();
+			return Ok(
+				applicationUser.Email
+				);
 		}
 
 		[HttpPut]
@@ -226,35 +228,30 @@ namespace SimpleNotes.Api.Controllers
 		[AllowAnonymous]
 		public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
 		{
-			if (ModelState.IsValid)
-			{
 				// Find the user by email
 				var user = await _userManager.FindByNameAsync(model.Email);
 				// If the user is found AND Email is confirmed
-				if (user != null )
+				if (user == null )
 				{
-					// Generate the reset password token
-					var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-
-					// Build the password reset link
-					var passwordResetLink = Url.Action("ResetPassword", "Account",
-							new { Email = model.Email, Token = token }, Request.Scheme);
-
-					// Log the password reset link
-					//Logger.Log(LogLevel.Warning, passwordResetLink);
-
-					// Send the user to Forgot Password Confirmation view
-					return Ok(new TokenForget {
-						Token = token
-					});
+					return BadRequest("invalid email");
 				}
 
-				// To avoid account enumeration and brute force attacks, don't
-				// reveal that the user does not exist or is not confirmed
-				return Ok();
-			}
+			// Generate the reset password token
+			var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-			return Ok(model);
+			// Build the password reset link
+			var passwordResetLink = Url.Action("ResetPassword", "Account",
+					new { Email = model.Email, Token = token }, Request.Scheme);
+
+			// Log the password reset link
+			//Logger.Log(LogLevel.Warning, passwordResetLink);
+
+			// Send the user to Forgot Password Confirmation view
+			return Ok(new TokenForget
+			{
+				Token = token,
+				Link = passwordResetLink
+			});
 		}
 
 		[Route("ResetPassword")]
@@ -305,5 +302,6 @@ namespace FirstProject.Controllers
 	class TokenForget
 	{
 		public string Token { get; set; }
+		public string Link { get; set; }
 	}
 }
