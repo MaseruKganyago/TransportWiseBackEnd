@@ -16,8 +16,7 @@ namespace FirstProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-	[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-	public class ArticlesController : ControllerBase
+    public class ArticlesController : ControllerBase
     {
         private readonly MyDBContext _context;
 		private readonly IMapper _mapper;
@@ -42,8 +41,7 @@ namespace FirstProject.Controllers
 
         // GET: api/Articles/5
         [HttpGet("{id}")]
-		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-		public async Task<ActionResult<ArticleDTO>> GetArticles([FromRoute] Guid id)
+        public async Task<ActionResult<ArticleDTO>> GetArticles([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {
@@ -63,8 +61,7 @@ namespace FirstProject.Controllers
 
         // PUT: api/Articles/5
         [HttpPut("{id}")]
-		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-		public async Task<IActionResult> PutArticles([FromRoute] Guid id, [FromBody] ArticlesDTO articles)
+        public async Task<IActionResult> PutArticles([FromRoute] Guid id, [FromBody] Articles articles)
         {
             if (!ModelState.IsValid)
             {
@@ -99,8 +96,7 @@ namespace FirstProject.Controllers
 
         // POST: api/Articles
         [HttpPost]
-		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-		public async Task<IActionResult> PostArticles([FromBody] ArticlesDTO articles)
+        public async Task<IActionResult> PostArticles([FromBody] Articles articles)
         {
             if (!ModelState.IsValid)
             {
@@ -115,8 +111,7 @@ namespace FirstProject.Controllers
 
         // DELETE: api/Articles/5
         [HttpDelete("{id}")]
-		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-		public async Task<IActionResult> DeleteArticles([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteArticles([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {

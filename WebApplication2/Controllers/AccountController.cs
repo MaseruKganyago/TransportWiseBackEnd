@@ -26,6 +26,7 @@ namespace SimpleNotes.Api.Controllers
 
 	[Route("api/[controller]")]
 	[ApiController]
+	[Authorize]
 	public class AccountController : ControllerBase
 	{
 
@@ -44,7 +45,10 @@ namespace SimpleNotes.Api.Controllers
 		}
 
 		[HttpPost]
+		[AllowAnonymous]
 		[Route("Login")]
+	//	[SwaggerResponse(200, typeof(Token))]
+		[Authorize]
 		public async Task<ActionResult> Login(LoginViewModel model)
 		{
 			var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
@@ -96,6 +100,7 @@ namespace SimpleNotes.Api.Controllers
 
 		[HttpPost]
 		[Route("Logout")]
+		[Authorize]
 		public async Task<ActionResult> Logout()
 		{
 			await _signInManager.SignOutAsync();
@@ -104,7 +109,9 @@ namespace SimpleNotes.Api.Controllers
 		}
 
 		[HttpPost]
+		[AllowAnonymous]
 		[Route("Register")]
+		[Authorize]
 		public async Task<IActionResult> Register(RegisterViewModel model)
 		{
 			try
@@ -143,7 +150,7 @@ namespace SimpleNotes.Api.Controllers
 
 		[HttpPut]
 		[Route("UpdateUser")]
-		[System.Web.Http.HostAuthentication(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalBearer)]
+		[AllowAnonymous]
 		public async Task<IActionResult> EditUser(ApplicationUserViewModel model)
 		{
 			var user = await _userManager.FindByIdAsync(model.Id);
@@ -188,6 +195,7 @@ namespace SimpleNotes.Api.Controllers
 
 		[HttpPut]
 		[Route("Password")]
+		[Authorize]
 		public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
 		{
 			var applicationUser = await _userManager.GetUserAsync(User);
@@ -206,6 +214,7 @@ namespace SimpleNotes.Api.Controllers
 
 		[HttpGet]
 		[Route("Authenticated")]
+		[Authorize]
 		public async Task<ActionResult> IsAuthenticated()
 		{
 			ApplicationUser user = await Current();
@@ -216,6 +225,7 @@ namespace SimpleNotes.Api.Controllers
 
 		[Route("ForgotPassword")]
 		[HttpPost]
+		[AllowAnonymous]
 		public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
 		{
 				// Find the user by email
@@ -246,6 +256,8 @@ namespace SimpleNotes.Api.Controllers
 
 		[Route("ResetPassword")]
 		[HttpPost]
+		[AllowAnonymous]
+		[Authorize]
 		public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
 		{
 			if (ModelState.IsValid)
