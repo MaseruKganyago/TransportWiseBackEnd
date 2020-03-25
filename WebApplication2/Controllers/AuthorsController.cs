@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,9 +29,9 @@ namespace FirstProject.Controllers
         }
 
         // GET: api/Authors
-        [HttpGet]
-		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-		public IEnumerable<AuthorDTO> GetAuthor()
+  	[HttpGet]
+    [System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        public IEnumerable<AuthorDTO> GetAuthor()
         {
             var authors = _context.Author.ToList();
 			var authorsDTO = _mapper.Map<List<AuthorDTO>>(authors);
