@@ -16,6 +16,7 @@ namespace FirstProject.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
+	[System.Web.Http.HostAuthentication(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalBearer)]
 	public class FuelWisesController : ControllerBase
 	{
 		private readonly MyDBContext _context;
@@ -40,8 +41,8 @@ namespace FirstProject.Controllers
 
 		// GET: api/FuelWises/5
 		[HttpGet("{id}")]
-		[AllowAnonymous]
-        public async Task<ActionResult<FuelWiseDTO>> GetFuelWise([FromRoute] Guid id)
+		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+		public async Task<ActionResult<FuelWiseDTO>> GetFuelWise([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {
@@ -61,7 +62,8 @@ namespace FirstProject.Controllers
 
         // PUT: api/FuelWises/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFuelWise([FromRoute] Guid id, [FromBody] FuelWise fuelWise)
+		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+		public async Task<IActionResult> PutFuelWise([FromRoute] Guid id, [FromBody] FuelWise fuelWise)
         {
             if (!ModelState.IsValid)
             {
@@ -96,6 +98,7 @@ namespace FirstProject.Controllers
 
         // POST: api/FuelWises
         [HttpPost]
+		[Authorize]
         public async Task<IActionResult> PostFuelWise([FromBody] FuelWise fuelWise)
         {
             if (!ModelState.IsValid)
@@ -111,6 +114,7 @@ namespace FirstProject.Controllers
 
         // DELETE: api/FuelWises/5
         [HttpDelete("{id}")]
+		[Authorize]
         public async Task<IActionResult> DeleteFuelWise([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)

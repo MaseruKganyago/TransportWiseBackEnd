@@ -15,7 +15,7 @@ public class MyDBContext : IdentityDbContext<ApplicationUser>
         {
         }
 
-        public DbSet<FirstProject.Domain.Articles> Articles { get; set; }
+        public DbSet<FirstProject.Domain.ArticlesDTO> Articles { get; set; }
 
         public DbSet<FirstProject.Domain.Author> Author { get; set; }
 

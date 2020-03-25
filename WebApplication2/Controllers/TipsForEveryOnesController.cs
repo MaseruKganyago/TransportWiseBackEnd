@@ -9,12 +9,15 @@ using FirstProject.Data;
 using FirstProject.Domain;
 using FirstProject.Models.DTOs;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNet.Identity;
 
 namespace FirstProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TipsForEveryOnesController : ControllerBase
+	[System.Web.Http.HostAuthentication(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalBearer)]
+	public class TipsForEveryOnesController : ControllerBase
     {
         private readonly MyDBContext _context;
 		private readonly IMapper _mapper;
@@ -27,7 +30,8 @@ namespace FirstProject.Controllers
 
         // GET: api/TipsForEveryOnes
         [HttpGet]
-        public IEnumerable<TipsForEveryOneDTO> GetTipsForEveryOne()
+		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+		public IEnumerable<TipsForEveryOneDTO> GetTipsForEveryOne()
         {
             var hints = _context.TipsForEveryOne;
 			var hintsDTO = _mapper.Map<List<TipsForEveryOneDTO>>(hints);
@@ -37,7 +41,8 @@ namespace FirstProject.Controllers
 
         // GET: api/TipsForEveryOnes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<TipsForEveryOneDTO>> GetTipsForEveryOne([FromRoute] Guid id)
+		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+		public async Task<ActionResult<TipsForEveryOneDTO>> GetTipsForEveryOne([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {
@@ -57,7 +62,8 @@ namespace FirstProject.Controllers
 
         // PUT: api/TipsForEveryOnes/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTipsForEveryOne([FromRoute] Guid id, [FromBody] TipsForEveryOne tipsForEveryOne)
+		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+		public async Task<IActionResult> PutTipsForEveryOne([FromRoute] Guid id, [FromBody] TipsForEveryOne tipsForEveryOne)
         {
             if (!ModelState.IsValid)
             {
@@ -92,7 +98,8 @@ namespace FirstProject.Controllers
 
         // POST: api/TipsForEveryOnes
         [HttpPost]
-        public async Task<IActionResult> PostTipsForEveryOne([FromBody] TipsForEveryOne tipsForEveryOne)
+		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+		public async Task<IActionResult> PostTipsForEveryOne([FromBody] TipsForEveryOne tipsForEveryOne)
         {
             if (!ModelState.IsValid)
             {
@@ -107,6 +114,9 @@ namespace FirstProject.Controllers
 
         // DELETE: api/TipsForEveryOnes/5
         [HttpDelete("{id}")]
+		[Authorize
+			
+			]
         public async Task<IActionResult> DeleteTipsForEveryOne([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)

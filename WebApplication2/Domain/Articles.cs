@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FirstProject.Domain
 {
-	public class Articles
+	public class ArticlesDTO
 	{
 		public Guid Id { get; set; }
 		public string Title { get; set; }
