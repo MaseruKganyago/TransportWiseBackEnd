@@ -40,7 +40,6 @@ namespace FirstProject.Controllers
 
 		// GET: api/FuelWises/5
 		[HttpGet("{id}")]
-		[Authorize]
 		[AllowAnonymous]
         public async Task<ActionResult<FuelWiseDTO>> GetFuelWise([FromRoute] Guid id)
         {
