@@ -16,8 +16,8 @@ using FirstProject.Models;
 namespace FirstProject.Controllers
 {
 	[Route("api/[controller]")]
+	[Authorize]
 	[ApiController]
-	[System.Web.Http.HostAuthentication(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalBearer)]
 	public class ImagesController : BaseController
 	{
 		private readonly MyDBContext _context;
@@ -30,8 +30,8 @@ namespace FirstProject.Controllers
 
 		private static readonly string BASE_FILE_PATH = "App_Data/Files";
 
+		[AllowAnonymous]
 		[HttpPost]
-		[System.Web.Http.HostAuthentication(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalBearer)]
 		public async Task<IActionResult> SetProfile([FromBody]  Encoded image)
 		{
 			var user = await _userManager.FindByIdAsync(image.Id);
@@ -57,7 +57,7 @@ namespace FirstProject.Controllers
 		}
 
 		[HttpGet]
-		[System.Web.Http.HostAuthentication(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalBearer)]
+		[AllowAnonymous]
 		public ActionResult GetProfile(string Name)
 		{
 			if (FileExists(Name))
