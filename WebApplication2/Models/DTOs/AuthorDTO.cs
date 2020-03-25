@@ -7,6 +7,7 @@ namespace FirstProject.Models.DTOs
 {
 	public class AuthorDTO
 	{
+		public Guid Id { get; set; }
 		public string Name { get; set; }
 		public string Surname { get; set; }
 		public string JobTitle { get; set; }

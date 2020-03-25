@@ -19,7 +19,7 @@ namespace FirstProject.Models.DTOs
 				 dest.Body,
 				 opt => opt.MapFrom(src => src.Body));
 
-			CreateMap<Articles, ArticleDTO>()
+			CreateMap<ArticlesDTO, ArticleDTO>()
 				.ForMember(dest =>
 				dest.Title,
 				opt => opt.MapFrom(src => src.Title))

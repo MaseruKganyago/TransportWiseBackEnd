@@ -146,7 +146,7 @@ namespace FirstProject
 			app.UseSwagger();
 			app.UseSwaggerUI(c =>
 			{
-				c.SwaggerEndpoint("/swagger/v1/swagger.json", "Maseru's API V1");
+				c.SwaggerEndpoint("/swagger/v1/swagger.json", "TransportWise APIs V1");
 			});
 
 			using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())

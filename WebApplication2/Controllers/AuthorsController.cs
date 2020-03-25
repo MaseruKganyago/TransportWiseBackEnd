@@ -10,12 +10,13 @@ using FirstProject.Domain;
 using FirstProject.Data;
 using FirstProject.Models.DTOs;
 using AutoMapper;
+using Microsoft.AspNet.Identity;
 
 namespace FirstProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-	[Authorize]
+	[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
 	public class AuthorsController : ControllerBase
     {
         private readonly MyDBContext _context;
@@ -29,8 +30,8 @@ namespace FirstProject.Controllers
 
         // GET: api/Authors
         [HttpGet]
-		[AllowAnonymous]
-        public IEnumerable<AuthorDTO> GetAuthor()
+		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+		public IEnumerable<AuthorDTO> GetAuthor()
         {
             var authors = _context.Author.ToList();
 			var authorsDTO = _mapper.Map<List<AuthorDTO>>(authors);
@@ -38,8 +39,8 @@ namespace FirstProject.Controllers
         }
 
         // GET: api/Authors/5
-        [HttpGet("{id}", Name = "GetAuthor")]
-		[AllowAnonymous]
+        [HttpGet("{id}")]
+		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
 		public async Task<ActionResult<AuthorDTO>> GetAuthor([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
@@ -60,8 +61,8 @@ namespace FirstProject.Controllers
 
         // PUT: api/Authors/5
         [HttpPut("{id}")]
-		[Authorize]
-		public async Task<IActionResult> PutAuthor([FromRoute] Guid id, [FromBody] Author author)
+		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+		public async Task<IActionResult> PutAuthor([FromRoute] Guid id, [FromBody] AuthorDTO author)
         {
             if (!ModelState.IsValid)
             {
@@ -96,7 +97,7 @@ namespace FirstProject.Controllers
 
         // POST: api/Authors
         [HttpPost]
-		[Authorize]
+		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
 		public async Task<IActionResult> PostAuthor([FromBody] Author author)
         {
             if (!ModelState.IsValid)
@@ -112,7 +113,7 @@ namespace FirstProject.Controllers
 
         // DELETE: api/Authors/5
         [HttpDelete("{id}")]
-		[Authorize]
+		[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
 		public async Task<IActionResult> DeleteAuthor([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
