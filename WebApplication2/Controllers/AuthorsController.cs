@@ -28,8 +28,8 @@ namespace FirstProject.Controllers
         }
 
         // GET: api/Authors
-        [HttpGet]
-	 [Authorize]
+        [Authorize]
+	[HttpGet]
         public IEnumerable<AuthorDTO> GetAuthor()
         {
             var authors = _context.Author.ToList();
@@ -38,8 +38,8 @@ namespace FirstProject.Controllers
         }
 
         // GET: api/Authors/5
-        [HttpGet("{id}", Name = "GetAuthor")]
-		[AllowAnonymous]
+        [Authorize]
+	[HttpGet("{id}", Name = "GetAuthor")]
 		public async Task<ActionResult<AuthorDTO>> GetAuthor([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
@@ -59,7 +59,7 @@ namespace FirstProject.Controllers
         }
 
         // PUT: api/Authors/5
-         [Authorize]
+        [Authorize]
 	[HttpPut("{id}")]
 		public async Task<IActionResult> PutAuthor([FromRoute] Guid id, [FromBody] Author author)
         {
