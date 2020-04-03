@@ -14,8 +14,8 @@ using Microsoft.AspNet.Identity;
 
 namespace FirstProject.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+	[Route("api/[controller]")]
+	[ApiController]
 	[System.Web.Http.HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
 	public class ArticlesController : ControllerBase
     {
